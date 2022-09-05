@@ -1,0 +1,6 @@
+<p-menubar [model]="items">
+  <p-dialog position="top" [(visible)]="display">
+    <app-new-product></app-new-product>
+  </p-dialog>
+   <button (click)="showDialog()" pButton pRipple type="button" label="Cadastrar Produto" class="p-button-outlined p-button-secondary"></button>
+</p-menubar>

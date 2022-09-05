@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="wrapper">
+    <div>
+      <div class="titulo">
+        <h1>Faça Login!</h1>
+      </div>
+      <form  class="form" [formGroup]="formUser" (ngSubmit)="authLogin()">
+        <div class=" p-fluid grid" >
+          <span class="p-float-label field col-8">
+            <input type="text" id="inputtext" pInputText formControlName="name">
+            <label for="inputtext">Nome</label>
+            <div class="validação" *ngIf="formUser.get('name')?.errors?.['required'] && formUser.get('name')?.touched">
+              Nome obrigatório
+            </div>
+          </span>
+          <span class="p-float-label field col-8" >
+            <input type="text" id="inputtext" pInputText formControlName="password">
+            <label for="inputtext">Senha</label>
+            <div  class="validação" *ngIf="formUser.get('password')?.errors?.['required'] && formUser.get('password')?.touched">
+              Senha obrigatória
+            </div>
+          </span>
+        </div>
+        <button (click)="authLogin()" [disabled]="!formUser.valid" pButton pRipple type="button" label="Entrar" class="entrar p-button-secondary"></button>
+      </form>
+    </div>
+  </div>
+  <div>
+    <img style="max-width: 100%;" src="assets/img/imageLogin.svg" alt="imagem de Login">
+  </div>
+</div>
+
+
+
