@@ -1,21 +1,21 @@
 <h1>Cadastre um novo produto!</h1>
-    <form>
+    <form [formGroup]="formNewProduct">
     <div class="p-fluid grid">
       <div class="field col-12" style="margin-top: 20px;">
           <span class="p-float-label" >
-              <input type="text" id="inputtext" pInputText>
+              <input type="text" id="inputtext" pInputText formControlName="name">
               <label for="inputtext">Nome</label>
           </span>
       </div>
       <div class="field col-12" style="margin-top: 5px;">
         <span class="p-float-label" >
-            <input type="text" id="inputtext" pInputText>
+            <input type="text" id="inputtext" pInputText formControlName="price">
             <label for="inputtext">Preço R$</label>
         </span>
       </div>
       <div class="field col-12" style="margin-top: 5px;">
        <span class="p-float-label" >
-          <input type="text" id="inputtext" pInputText>
+          <input type="text" id="inputtext" pInputText formControlName="category">
           <label for="inputtext">Categorias</label>
        </span>
      </div>
@@ -24,10 +24,10 @@
    <p-fileUpload name="myfile[]" url="./upload.php" accept="image/*"></p-fileUpload>
    <div class="buttonModal">
     <span>
-      <button style="margin-left: 10px;" pButton pRipple type="button" label="Salvar" class="p-button-warning"></button>
+      <button (click)="saveNewProduct()" style="margin-left: 10px;" pButton pRipple type="button" label="Salvar" class="p-button-warning"></button>
     </span>
     <span style="margin-left:10px;">
-      <button pButton pRipple type="button" label="Cancelar" class="p-button-danger"></button>
+      <button (click)="closeModalNewProduct()" pButton pRipple type="button" label="Cancelar" class="p-button-danger"></button>
     </span>
   </div>
 

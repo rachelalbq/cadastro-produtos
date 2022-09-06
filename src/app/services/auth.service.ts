@@ -13,6 +13,7 @@ export class AuthService {
     if(!user){
       return false;
     }
-    return user.password === password
+
+    return user?.password === password
   }
 }

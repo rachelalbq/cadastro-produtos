@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
 formUser!: FormGroup;
+formInvalid: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,6 +32,10 @@ formUser!: FormGroup;
     const userPass = this.formUser.get('password')?.value
 
     const response = this.authService.login(userName, userPass)
+
+    if(!response){
+      this.formInvalid = true;
+    }
 
     if (response) {
       localStorage.setItem('isLoggedIn', "true");

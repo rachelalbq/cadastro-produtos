@@ -1,6 +1,7 @@
 import { Router} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,6 +10,7 @@ import {MenuItem} from 'primeng/api';
 })
 export class TopBarComponent implements OnInit {
 
+
   items!: MenuItem[];
   display: boolean = false;
   uploadedFiles: any[] = [];
@@ -16,8 +18,8 @@ export class TopBarComponent implements OnInit {
 
 
   constructor(
-    private router: Router
-
+    private router: Router,
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
@@ -53,7 +55,12 @@ export class TopBarComponent implements OnInit {
   // }
 
   logoff(e: any){
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
+    localStorage.removeItem('isLoggedIn')
+  }
+
+  closeModal(e: any){
+    this.display = e
   }
 
 }

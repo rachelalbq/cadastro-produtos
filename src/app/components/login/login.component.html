@@ -19,6 +19,9 @@
             <div  class="validação" *ngIf="formUser.get('password')?.errors?.['required'] && formUser.get('password')?.touched">
               Senha obrigatória
             </div>
+            <div class="validação" *ngIf="formInvalid">
+             Nome ou Senha inválido
+            </div>
           </span>
         </div>
         <button (click)="authLogin()" [disabled]="!formUser.valid" pButton pRipple type="button" label="Entrar" class="entrar p-button-secondary"></button>

@@ -137,5 +137,8 @@
       "style": "scss"
     }
   },
-  "defaultProject": "app-cadastro-produtos"
+  "defaultProject": "app-cadastro-produtos",
+  "cli": {
+    "analytics": "e33a9363-747d-4e3e-ba04-fbd1ea3a8faa"
+  }
 }

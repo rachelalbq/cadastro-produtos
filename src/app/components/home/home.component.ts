@@ -42,15 +42,32 @@ export class HomeComponent implements OnInit {
     .subscribe({
       next: (response: any) => {
        if(response){
-        this.products = response.products
+        this.productService.product = response.products
+        this.productService.productLocal = JSON.parse(this.productService.productLocal)
+        this.productService.product = [...this.productService.product, this.productService.productLocal]
+        this.products = this.productService.product
+        console.log(this.products)
        }
       },
       complete: () => {
         console.log('teste')
       }
     })
+
   }
 
+
+  // this.productService.postNewProduct()
+  // .subscribe({
+  //   next:(response: any) => {
+  //     if(response){
+  //       console.log(response)
+  //     }
+  //   },
+  //   complete: () => {
+  //     console.log('teste2')
+  //   }
+  // })
 
 
 
