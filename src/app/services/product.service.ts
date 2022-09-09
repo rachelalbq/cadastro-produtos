@@ -12,24 +12,10 @@ export class ProductService {
 
   productNames: string[] = [];
 
-  product!: any;
-  newProducts!: any;
-  productLocal!: any;
 
   constructor
   (private http: HttpClient,) { }
 
-  getProductsSmall(data?: number) {
-  this.productLocal = localStorage.getItem('newProduct')
-  return this.http.get<iRoot>('https://dummyjson.com/products')
 
-
-}
-
-  postNewProduct(){
-    console.log(this.product)
-
-
-  }
 
 }

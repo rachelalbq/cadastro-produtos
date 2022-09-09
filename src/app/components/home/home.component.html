@@ -1,5 +1,5 @@
 <app-top-bar></app-top-bar>
-<p-table [value]="products" responsiveLayout="scroll">
+<p-table [value]="getSearchProducts()" responsiveLayout="scroll">
   <ng-template pTemplate="caption">
     <form >
       <div class="flex align-items-center justify-content-between">
@@ -17,21 +17,26 @@
           <th>Imagem</th>
           <th>Preço</th>
           <th>Categoria</th>
+          <th>UtilidadesS</th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
 
-      <tr *ngFor="let product of products | searchProducts:'title' : searchValue: 'includes'">
+      <!-- <tr *ngFor="let product of products | searchProducts:'title' : searchValue: 'includes'"> -->
+      <tr>
           <td>{{product.title}}</td>
           <td><img [src]="product.images[0]" [alt]="product.description" width="100" class="shadow-4" /></td>
           <td>{{product.price | currency:'USD'}}</td>
           <td>{{product.category}}</td>
-
+          <td>
+            <button (click)="editProduct(product.id)" style="margin-right: 0.5rem;" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning p-buton-sm"></button>
+            <button (click)= "deleteProduct(product.id)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-buton-sm"></button>
+          </td>
       </tr>
   </ng-template>
   <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-          In total there are {{products ? products.length : 0 }} products.
+          In total there are {{ getSearchProducts().length }} products.
       </div>
   </ng-template>
 </p-table>

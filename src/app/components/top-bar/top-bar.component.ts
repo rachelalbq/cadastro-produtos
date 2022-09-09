@@ -24,11 +24,7 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = [
-      {
-        label: 'Usuário',
-        icon: 'pi pi-fw pi-users',
 
-      },
       {
           label: 'Recarregar',
           icon: 'pi pi-fw pi-refresh',

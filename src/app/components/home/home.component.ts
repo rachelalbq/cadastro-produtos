@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,55 +23,64 @@ export class HomeComponent implements OnInit {
 
 
 
+
   constructor(
     private productService: ProductService,
-    // private formBuilder: FormBuilder
     ) {
       this.products = [];
      }
 
   ngOnInit(): void {
 
-    // this.formProduct = this.formBuilder.group({
-    //   description_product: ['']
-    // })
+        var products: iProduct[] = [];
 
+        if (localStorage.getItem('products') !== null) {
+          const parsed_products = JSON.parse(
+            localStorage.getItem('products')!
+          ) as iProduct[]
 
-    // console.log(this.formProduct.get('description_product')?.value)
+          parsed_products.forEach((product) => products.push(product))
+        }
 
-    this.productService.getProductsSmall()
-    .subscribe({
-      next: (response: any) => {
-       if(response){
-        this.productService.product = response.products
-        this.productService.productLocal = JSON.parse(this.productService.productLocal)
-        this.productService.product = [...this.productService.product, this.productService.productLocal]
-        this.products = this.productService.product
-        console.log(this.products)
+        console.log('FETCH PRODUCTS ', products)
+
+        this.products = products;
        }
-      },
-      complete: () => {
-        console.log('teste')
-      }
-    })
+
+
+
+
+
+  getSearchProducts() {
+    const validSearch = this.searchValue !== undefined && this.searchValue !== null && this.searchValue !== '';
+
+    return validSearch ? this.products.filter(
+      (obj) => obj.title.toLowerCase().includes(
+        this.searchValue.toLowerCase()
+      )
+    ) : this.products;
+  }
+
+
+  deleteProduct(id: number){
+    var products: iProduct[] = [];
+
+    if (localStorage.getItem('products') !== null) {
+      products = JSON.parse(
+        localStorage.getItem('products')!
+      ) as iProduct[]
+    }
+
+    this.products = products.filter((obj) => obj.id !== id)
+    localStorage.setItem('products', JSON.stringify(this.products));
 
   }
 
 
-  // this.productService.postNewProduct()
-  // .subscribe({
-  //   next:(response: any) => {
-  //     if(response){
-  //       console.log(response)
-  //     }
-  //   },
-  //   complete: () => {
-  //     console.log('teste2')
-  //   }
-  // })
 
-
-
+  editProduct(id: number){
+    console.log(1)
+  }
 
   }
 

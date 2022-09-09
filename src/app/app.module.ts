@@ -16,7 +16,6 @@ import { ProductService } from 'src/app/services/product.service';
 import {RatingModule} from 'primeng/rating';
 
 import {TableModule} from 'primeng/table';
-import { SearchProductsPipe } from './pipes/search-products.pipe';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import {DialogModule} from 'primeng/dialog';
 import {FileUploadModule} from 'primeng/fileupload';
@@ -35,7 +34,6 @@ import { LoginComponent } from './components/login/login.component';
     AppComponent,
     TopBarComponent,
     HomeComponent,
-    SearchProductsPipe,
     NewProductComponent,
     ModalUsersComponent,
     LoginComponent,
