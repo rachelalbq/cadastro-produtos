@@ -1,42 +1,45 @@
-<app-top-bar></app-top-bar>
-<p-table [value]="getSearchProducts()" responsiveLayout="scroll">
-  <ng-template pTemplate="caption">
-    <form >
-      <div class="flex align-items-center justify-content-between">
+  <app-top-bar></app-top-bar>
+  <p-table [value]="getSearchProducts()" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <form >
+        <div class="flex align-items-center justify-content-between">
           Produtos
           <span class="p-input-icon-left">
-          <input  [(ngModel)]="searchValue" pInputText placeholder="Search" >
-          <i class="pi pi-fw pi-search"></i>
-        </span>
-      </div>
-    </form>
-  </ng-template>
-  <ng-template pTemplate="header">
-      <tr>
-          <th>Nome</th>
-          <th>Imagem</th>
-          <th>Preço</th>
-          <th>Categoria</th>
-          <th>UtilidadesS</th>
+            <input  [(ngModel)]="searchValue" pInputText placeholder="Search" >
+            <i class="pi pi-fw pi-search"></i>
+          </span>
+        </div>
+      </form>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr class="head">
+        <th>Nome</th>
+        <th>Imagem</th>
+        <th>Preço</th>
+        <th>Categoria</th>
+        <th>Utilidades</th>
       </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
 
       <!-- <tr *ngFor="let product of products | searchProducts:'title' : searchValue: 'includes'"> -->
-      <tr>
+        <tr>
           <td>{{product.title}}</td>
           <td><img [src]="product.images[0]" [alt]="product.description" width="100" class="shadow-4" /></td>
           <td>{{product.price | currency:'USD'}}</td>
           <td>{{product.category}}</td>
           <td>
-            <button (click)="editProduct(product.id)" style="margin-right: 0.5rem;" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning p-buton-sm"></button>
+            <button (click)="editProduct(product)" style="margin-right: 0.5rem;" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning p-buton-sm"></button>
             <button (click)= "deleteProduct(product.id)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-buton-sm"></button>
           </td>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">
-          In total there are {{ getSearchProducts().length }} products.
-      </div>
-  </ng-template>
-</p-table>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          Total de {{ getSearchProducts().length }} produtos.
+        </div>
+      </ng-template>
+    </p-table>
+    <p-dialog position="top" [(visible)]="display">
+      <app-edit-product [produto]="getCurrentEditor()" (close)="closeModal($event)"></app-edit-product>
+    </p-dialog>

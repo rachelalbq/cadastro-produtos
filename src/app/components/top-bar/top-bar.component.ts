@@ -9,54 +9,52 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-
-
+  
+  
   items!: MenuItem[];
   display: boolean = false;
   uploadedFiles: any[] = [];
   userLogged: boolean = false;
-
-
+  
+  
   constructor(
     private router: Router,
     private authService: AuthService
     ) { }
-
-  ngOnInit(): void {
-    this.items = [
-
-      {
+    
+    ngOnInit(): void {
+      this.items = [
+        
+        {
           label: 'Recarregar',
           icon: 'pi pi-fw pi-refresh',
           command: e => this.locationReload(e),
-      },
-      {
-        label: 'Sair',
-        icon: 'pi pi-fw pi-power-off',
-        command: e => this.logoff(e)
-     }
-    ]
-  }
-
-  showDialog() {
+        },
+        {
+          label: 'Sair',
+          icon: 'pi pi-fw pi-power-off',
+          command: e => this.logoff(e)
+        }
+      ]
+    }
+    
+    showDialog() {
       this.display = true;
     }
-
-  locationReload(e: any){
-    location.reload();
+    
+    locationReload(e: any){
+      location.reload();
+    }
+    
+    
+    logoff(e: any){
+      this.router.navigate(['']);
+      localStorage.removeItem('isLoggedIn')
+    }
+    
+    closeModal(e: any){
+      this.display = e
+    }
+    
   }
-
-  // modalUser(e: any){
-  //   this.userLogged = true;
-  // }
-
-  logoff(e: any){
-    this.router.navigate(['']);
-    localStorage.removeItem('isLoggedIn')
-  }
-
-  closeModal(e: any){
-    this.display = e
-  }
-
-}
+  

@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-formUser!: FormGroup;
-formInvalid: boolean = false;
+  formUser!: FormGroup;
+  formInvalid: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -19,28 +19,28 @@ formInvalid: boolean = false;
     private router: Router
     ) { }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-    this.formUser = this.formBuilder.group({
-      name: ['', Validators.required],
-      password: ['', Validators.required]
-    })
-  }
-
-  authLogin(){
-    const userName = this.formUser.get('name')?.value
-    const userPass = this.formUser.get('password')?.value
-
-    const response = this.authService.login(userName, userPass)
-
-    if(!response){
-      this.formInvalid = true;
+      this.formUser = this.formBuilder.group({
+        name: ['', Validators.required],
+        password: ['', Validators.required]
+      })
     }
 
-    if (response) {
-      localStorage.setItem('isLoggedIn', "true");
-      this.router.navigate(['/home']);
-    }
-  }
+    authLogin(){
+      const userName = this.formUser.get('name')?.value
+      const userPass = this.formUser.get('password')?.value
 
-}
+      const response = this.authService.login(userName, userPass)
+
+      if(!response){
+        this.formInvalid = true;
+      }
+
+      if (response) {
+        localStorage.setItem('isLoggedIn', "true");
+        this.router.navigate(['/home']);
+      }
+    }
+
+  }

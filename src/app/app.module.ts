@@ -19,8 +19,8 @@ import {TableModule} from 'primeng/table';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import {DialogModule} from 'primeng/dialog';
 import {FileUploadModule} from 'primeng/fileupload';
-import { ModalUsersComponent } from './components/modal-users/modal-users.component';
 import { LoginComponent } from './components/login/login.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 
 
@@ -35,8 +35,8 @@ import { LoginComponent } from './components/login/login.component';
     TopBarComponent,
     HomeComponent,
     NewProductComponent,
-    ModalUsersComponent,
     LoginComponent,
+    EditProductComponent,
 
   ],
   imports: [
