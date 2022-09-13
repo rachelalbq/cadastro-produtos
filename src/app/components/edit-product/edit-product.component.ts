@@ -32,9 +32,10 @@ export class EditProductComponent implements OnChanges{
       this.formProduct = this.formBuilder.group({
         title: this.produto?.title,
         price: this.produto?.price,
-        category: this.produto?.category
+        category: this.produto?.category,
+        images: this.produto?.images
       })
-      console.log(this.produto?.price)
+
     }
 
     async editProduct(){
@@ -49,13 +50,14 @@ export class EditProductComponent implements OnChanges{
         parsed_products.forEach((product) => products.push(product))
       }
 
-      const image = await this.convertToBase64(this.file);
-
+      const image = await this.convertToBase64(this.file)
+      const images = await this.convertToBase64(this.produto?.images)
+      console.log(this.produto?.images)
       let productEdit: any = {
         title: this.formProduct.get('title')?.value,
-        price: this.formProduct.get('price')?.value,
+        price: this.formProduct.get('price')?.value.replaceAll('.','').replaceAll(',','').replaceAll('R$ ', ''),
         category: this.formProduct.get('category')?.value,
-        images: [image as string]
+        images: [images]
       };
 
       const index = products.findIndex((product) => product.id === this.produto?.id)
@@ -79,7 +81,7 @@ export class EditProductComponent implements OnChanges{
         this.file = event.currentFiles[0];
       }
 
-      convertToBase64 (file: File){
+      convertToBase64 (file: any){
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onload = () => resolve(reader.result);

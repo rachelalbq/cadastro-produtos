@@ -57,8 +57,7 @@ export class NewProductComponent implements OnInit {
 
         localStorage.setItem('products', JSON.stringify(products));
 
-        location.reload();
-
+        console.log(products)
         console.log(this.file)
       }
 
