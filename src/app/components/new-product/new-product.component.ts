@@ -44,7 +44,7 @@ export class NewProductComponent implements OnInit {
         id: Math.random() * 100,
 
       }
-
+      console.log(image)
       var products: iProduct[] = [];
 
       if (localStorage.getItem('products') !== null) {
@@ -57,7 +57,8 @@ export class NewProductComponent implements OnInit {
 
         localStorage.setItem('products', JSON.stringify(products));
 
-        console.log(products)
+        location.reload();
+
         console.log(this.file)
       }
 
