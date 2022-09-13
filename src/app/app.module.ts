@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,8 +21,12 @@ import {DialogModule} from 'primeng/dialog';
 import {FileUploadModule} from 'primeng/fileupload';
 import { LoginComponent } from './components/login/login.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { NgxMaskModule } from 'ngx-mask'
+import {LOCALE_ID} from '@angular/core';
+import { registerLocaleData } from "@angular/common";
+import  localePt  from "@angular/common/locales/pt";
 
-
+registerLocaleData(localePt, "pt")
 
 
 
@@ -53,11 +57,20 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     ReactiveFormsModule,
     DialogModule,
     FileUploadModule,
-    RouterModule
+    RouterModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false // ao salvar mantem a mascara
+    })
 
 
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

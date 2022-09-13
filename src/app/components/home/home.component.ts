@@ -1,7 +1,6 @@
-import { iProduct, iRoot } from './../../interface/product';
+import { iProduct } from './../../interface/product';
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 
 

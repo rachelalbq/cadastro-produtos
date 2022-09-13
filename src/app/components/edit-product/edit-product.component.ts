@@ -34,6 +34,7 @@ export class EditProductComponent implements OnChanges{
         price: this.produto?.price,
         category: this.produto?.category
       })
+      console.log(this.produto?.price)
     }
 
     async editProduct(){
