@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { iProduct } from './../../interface/product';
 import { FormGroup, FormBuilder, Validators, FormControlName, FormControl } from '@angular/forms';
+import { Buffer } from 'buffer';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class EditProductComponent implements OnChanges{
   product!: iProduct[]
   newProduct!: iProduct
   formProduct!: FormGroup
-  file!: File
+  file!: any
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,12 +30,22 @@ export class EditProductComponent implements OnChanges{
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+
+      if(changes.produto.currentValue){
+        this.file= this.dataUrlToFile(this.produto?.images[0])
+
+      }
+
+
+      console.log(this.produto?.images[0])
+
       this.formProduct = this.formBuilder.group({
         title: this.produto?.title,
         price: this.produto?.price,
         category: this.produto?.category,
-        images: this.produto?.images
+        images: this.file
       })
+        console.log(this.formProduct.value)
 
     }
 
@@ -89,5 +101,21 @@ export class EditProductComponent implements OnChanges{
         });
 
       }
+      dataUrlToFile(dataUrl: string | undefined) {
+        const arr = dataUrl?.split(',');
+        if (arr!.length < 2) { return undefined; }
+        const mimeArr = arr![0].match(/:(.*?);/);
+        if (!mimeArr || mimeArr.length < 2) { return undefined; }
+        const mime = mimeArr[1];
+        const buff = Buffer.from(arr![1], 'base64');
+        return new File([buff], 'teste', {type:mime});
+
+      }
 
     }
+
+
+
+
+
+

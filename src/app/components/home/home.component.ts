@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
 
 
+
   constructor() {}
 
     ngOnInit(): void {
@@ -49,6 +50,8 @@ export class HomeComponent implements OnInit {
             ) : this.products;
           }
 
+
+
           deleteProduct(id: number){
             var products: iProduct[] = [];
 
@@ -67,6 +70,8 @@ export class HomeComponent implements OnInit {
             editProduct(product: iProduct){
               this.display = true;
               this.currentEditor = product;
+
+
             }
 
             closeModal(e: any){
@@ -75,7 +80,12 @@ export class HomeComponent implements OnInit {
             getCurrentEditor() {
               return this.currentEditor;
             }
+
+
+
+
           }
+
 
 
 
