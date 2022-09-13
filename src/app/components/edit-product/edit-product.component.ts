@@ -1,4 +1,3 @@
-import { HomeComponent } from './../home/home.component';
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { iProduct } from './../../interface/product';
 import { FormGroup, FormBuilder, Validators, FormControlName, FormControl } from '@angular/forms';
@@ -51,13 +50,13 @@ export class EditProductComponent implements OnChanges{
       }
 
       const image = await this.convertToBase64(this.file)
-      const images = await this.convertToBase64(this.produto?.images)
+
       console.log(this.produto?.images)
       let productEdit: any = {
         title: this.formProduct.get('title')?.value,
         price: this.formProduct.get('price')?.value.replaceAll('.','').replaceAll(',','').replaceAll('R$ ', ''),
         category: this.formProduct.get('category')?.value,
-        images: [images]
+        images: [image]
       };
 
       const index = products.findIndex((product) => product.id === this.produto?.id)
@@ -81,7 +80,7 @@ export class EditProductComponent implements OnChanges{
         this.file = event.currentFiles[0];
       }
 
-      convertToBase64 (file: any){
+      convertToBase64 (file: File){
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onload = () => resolve(reader.result);
